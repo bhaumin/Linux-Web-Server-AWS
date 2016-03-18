@@ -1,19 +1,19 @@
 P5: LINUX SERVER CONFIGURATION
-
+==============================
 
 Server
-=======
+-------
 IP Address: 52.27.252.176
 Port: 2200
 
 
 Application URL
-================
+----------------
 http://ec2-52-27-252-176.us-west-2.compute.amazonaws.com/
 
 
 Software Installed
-===================
+-------------------
 
 1. Finger
 
@@ -53,7 +53,7 @@ Software Installed
 
 
 Configuration Changes
-======================
+----------------------
 
 1. Upgraded the existing installed packages
 
@@ -121,7 +121,7 @@ Configuration Changes
 	```
 
 udacity_key.rsa
-================
+----------------
 
 ```
 MIIEowIBAAKCAQEAwiXjhfzBNjk76wR5ZLeSnLIbi21rZ8bdijZNynG3eVmqiUi4
