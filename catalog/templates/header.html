@@ -1,0 +1,29 @@
+<div class="navbar navbar-inverse navbar-fixed-top catalog-navbar">
+	<div class="container">
+		<div class="col-md-4">
+			<div class="navbar-header">
+				<a href="{{url_for('showCatalog')}}"><h1>Catalog App</h1></a>
+			</div>
+		</div>
+		<div class="col-md-5">
+			<div class="navbar-text navbar-right">
+				{% if not username %}
+					<a href="{{url_for('showLogin')}}">
+						<button
+							type="button"
+							class="btn btn-primary navbar-btn">Login</button>
+					</a>
+				{% else %}
+					<p>
+						Logged in as <strong>{{ username }}</strong>
+						<a href="{{url_for('gdisconnect')}}">
+							<button
+								type="button"
+								class="btn btn-primary navbar-btn">Logout</button>
+						</a>
+					</p>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>

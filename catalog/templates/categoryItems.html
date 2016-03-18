@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="col-md-9">
+	<div class="row">
+		{% include "flash_messages.html" %}
+	</div>
+
+	<div class="row content padding-bottom">
+		{% include "categories.html" %}
+		<div class="col-md-7 padding-top">
+			{% if username %}
+				<a href="{{url_for('addItem')}}">Add Item</a>
+			{% endif %}
+
+			<h3>{{selected_category.name}} Items ({{item_count}} item{% if item_count > 1 %}s{% endif %})</h3>
+			<ul>
+				{% for item in category_items %}
+					<a href="{{url_for('showItemDetails', category_name = selected_category.name, item_title = item.title)}}">
+						<li>{{item.title}}</li>
+					</a>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

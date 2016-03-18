@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="col-md-9">
+	<div class="row">
+		{% include "flash_messages.html" %}
+	</div>
+	<div class="row content padding-left padding-bottom">
+		<h3>{{item.title}}</h3>
+		<p>Description: {{item.description}}</p>
+		{% if username %}
+			<a href="{{url_for('editItem', category_name = item.category.name, item_title = item.title)}}">Edit</a>
+			|
+			<a href="{{url_for('deleteItem', category_name = item.category.name, item_title = item.title)}}">Delete</a>
+		{% endif %}
+	</div>
+</div>
+
+{% endblock %}

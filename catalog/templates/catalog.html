@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="col-md-9">
+	<div class="row">
+		{% include "flash_messages.html" %}
+	</div>
+
+	<div class="row content padding-bottom">
+		{% include "categories.html" %}
+		<div class="col-md-7 padding-top">
+			{% if username %}
+				<a href="{{url_for('addItem')}}">Add Item</a>
+			{% endif %}
+
+			<h3>Latest Items</h3>
+			<ul>
+				{% for item in latest_items %}
+					<li>
+						<a href="{{url_for('showItemDetails', category_name = item.category.name, item_title = item.title)}}">{{item.title}}</a>
+						<span class="latest-items-category-name">({{item.category.name}})</span>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
