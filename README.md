@@ -17,27 +17,39 @@ Software Installed
 
 1. Finger
 
+	```bash
 	sudo apt-get install finger
+	```
 
 2. Apache
 
+	```bash
 	sudo apt-get install apache2
+	```
 
 3. python-setuptools, libapache2-mod-wsgi, python-flask, python-sqlalchemy, python-psycopg2, python-pip, oauth2client, dicttoxml
 
+	```bash
 	sudo apt-get install python-setuptools libapache2-mod-wsgi python-flask python-sqlalchemy python-psycopg2 python-pip oauth2client dicttoxml
+	```
 
 4. ntp
 
+	```bash
 	sudo apt-get install ntp
+	```
 
 5. git
 
+	```bash
 	sudo apt-get install git
+	```
 
 6. PostgreSQL
 
+	```bash
 	sudo apt-get install postgresql
+	```
 
 
 Configuration Changes
@@ -45,55 +57,73 @@ Configuration Changes
 
 1. Upgraded the existing installed packages
 
+	```bash
 	sudo apt-get update
 	sudo apt-get upgrade
+	```
 
 2. New user "grader"
 
+	```bash
 	sudo adduser grader
-
+	```
+	
 3. Made user grader a sudo user by creating the following file
 
+	```bash
 	sudo nano /etc/sudoers.d/grader
+	```
 
 4. Firewall rules as per the requirements
 
+	```bash
 	sudo ufw default deny incoming
 	sudo ufw default allow outgoing
 	sudo ufw allow 2200/tcp
 	sudo ufw allow www
 	sudo ufw allow ntp
 	sudo ufw enable
+	```
 
 5. Changed the server timezone to UTC using the following utility
 
+	```bash
 	sudo dpkg-reconfigure tzdata
+	```
 
 6. Modified the following file
 
+	```bash
 	sudo nano /etc/ssh/sshd_config
-
+	```
+	
+	```
 	changed default ssh port to 2200
 	Port 2200
 
 	Change to no to disable tunnelled clear text passwords
 	PasswordAuthentication no
+	```
 
 7. New PostgreSQL database "catalog" and new database role named "catalog" (password=catal0g)
 
+	```bash
 	sudo -i -u postgres
 	/etc/init.d/postgresql start &&\ psql --command "CREATE USER catalog WITH CREATEDB LOGIN PASSWORD 'catal0g';" &&\ createdb -O catalog catalog &&\ psql -U postgres -d catalog -c "REVOKE ALL ON SCHEMA public FROM public;" &&\ psql -U postgres -d catalog -c "GRANT ALL ON SCHEMA public TO catalog;"
+	```
 
 8. In order to be able to login as "grader", generate a ssh key locally and copy the corresponding public key on the server
 
+	```bash
 	echo 'run ssh-keygen on your machine'
 	echo 'ssh-copy-id -p 2200 -i ~/.ssh/{your_pubkey_file} grader@52.27.252.176'
 	echo 'ssh -p 2200 -i ~/.ssh/{your_privatekey_file} grader@52.27.252.176'
-
+	```
 
 udacity_key.rsa
 ================
 
+```
 MIIEowIBAAKCAQEAwiXjhfzBNjk76wR5ZLeSnLIbi21rZ8bdijZNynG3eVmqiUi4
 OGEuRkXuIcPYl3p06jffw+okuWxL3LKy4J4J+Oinup7DRG8/JR6qBhV+wG2UDSJP
 OnDt3XvQA4/MNsQQLbpMKShumlDswF2Ra4GdOPgz2tPqH2ZL7vfVZ2NAExdGJCiA
@@ -119,4 +149,4 @@ n0p7Wf5V9WJCW/D2/5HzrKP+YAEOckgfIdKkUAjU0b3rwv8Hd7xsl9lu1CSSAPdi
 ICOMkQKBgCkOcttdyM9LXEwYc5xJ8kXDeZE9WivRiTjtNyhZW/TGp/upgWuvcAYG
 pzgmTF3NTK5vkTLUQlWJOvl4K2tZskqyOoqH5XrOon1XA+bXTLIGx8zgKa/SFxSb
 zd18ng50VnMsIUp3h7p1QfqbBLUaF4RCEhBGUaUX6sim98VzzwVk
-
+```
