@@ -155,6 +155,8 @@ Configuration Changes
 
 10. [Configure](https://www.digitalocean.com/community/tutorials/how-to-install-munin-on-an-ubuntu-vps) the munin monitoring server
 
+	Munin Monitor Server URL: http://52.27.252.176/munin/
+
 
 
 udacity_key.rsa
