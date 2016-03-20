@@ -51,6 +51,25 @@ Software Installed
 	sudo apt-get install postgresql
 	```
 
+7. unattended-upgrades
+	```bash
+	sudo apt-get install unattended-upgrades
+	sudo dpkg-reconfigure --priority=low unattended-upgrades
+	```
+
+8. fail2ban
+
+	```bash
+	sudo apt-get install fail2ban
+	```
+
+9. munin
+
+	```bash
+	sudo apt-get install munin
+	```
+
+
 
 Configuration Changes
 ----------------------
@@ -62,7 +81,7 @@ Configuration Changes
 	sudo apt-get upgrade
 	```
 
-2. New user "grader"
+2. New user "grader" (password=ud@citygrad3r)
 
 	```bash
 	sudo adduser grader
@@ -103,6 +122,9 @@ Configuration Changes
 
 	Change to no to disable tunnelled clear text passwords
 	PasswordAuthentication no
+
+	Disallow remote root login
+	PermitRootLogin no
 	```
 
 7. New PostgreSQL database "catalog" and new database role named "catalog" (password=catal0g)
@@ -118,7 +140,22 @@ Configuration Changes
 	echo 'run ssh-keygen on your machine'
 	echo 'ssh-copy-id -p 2200 -i ~/.ssh/{your_pubkey_file} grader@52.27.252.176'
 	echo 'ssh -p 2200 -i ~/.ssh/{your_privatekey_file} grader@52.27.252.176'
+
 	```
+
+9. Configure apache2 to setup and enable the virtual host for this catalogapp site
+	- Copy catalogapp.conf to /etc/apache2/sites-available
+	- Disabling the default site and enabling the catalogapp site with following commands
+
+	```bash
+	sudo a2ensite catalogapp
+	sudo a2dissite 000-default
+	sudo service apache2 reload
+	```
+
+10. [Configure](https://www.digitalocean.com/community/tutorials/how-to-install-munin-on-an-ubuntu-vps) the munin monitoring server
+
+
 
 udacity_key.rsa
 ----------------
